@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
-/* Book Already imported in Booklist so that's why i don't import it here! */
 import React, { useState } from 'react';
 import BookList from './Booklist';
+/* Book Already imported in Booklist so that's why i don't import it here! */
 
 const AddBook = () => {
   const [title, setTitle] = useState('');

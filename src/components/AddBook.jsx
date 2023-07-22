@@ -11,9 +11,8 @@ const AddBook = () => {
   const handleAddBook = (e) => {
     e.preventDefault();
     if (title.trim() === '' || category.trim() === '') {
-      return; // Don't add the book if title or category is empty
+      return;
     }
-
     const newBook = {
       id: Date.now(),
       title,

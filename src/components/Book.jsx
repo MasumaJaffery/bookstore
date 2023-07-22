@@ -6,7 +6,7 @@ function Book({ book, onRemove }) {
   return (
     <div>
       <span>{book.title}</span>
-      <span>{book.author}</span>
+      <span>{book.category}</span>
       <button type="button" onClick={() => onRemove(book.id)}>Delete</button>
     </div>
   );
@@ -17,7 +17,7 @@ Book.propTypes = {
   book: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
   }).isRequired,
   onRemove: PropTypes.func.isRequired,
 };

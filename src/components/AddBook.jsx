@@ -1,39 +1,46 @@
 /* eslint-disable linebreak-style */
+/* Book Already imported in Booklist so that's why i don't import it here! */
 import React, { useState } from 'react';
+import BookList from './Booklist';
 
 const AddBook = () => {
-  const [book, setBook] = useState('');
+  const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
-  const [booklist, setList] = useState([]);
+  const [books, setBooks] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleAddBook = (e) => {
     e.preventDefault();
-    const newItem = {
-      id: Math.random(),
-      book,
-    };
-    if (book) {
-      setList([...booklist, newItem]);
-      setBook('');
+    if (title.trim() === '' || category.trim() === '') {
+      return; // Don't add the book if title or category is empty
     }
-  };
 
-  const handleDelete = (id) => {
-    setList(booklist.filter((item) => item.id !== id));
+    const newBook = {
+      id: Date.now(),
+      title,
+      category,
+    };
+
+    setBooks((prevBooks) => [...prevBooks, newBook]);
+    setTitle('');
+    setCategory('');
   };
 
   return (
     <>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleAddBook}>
           <input
             type="text"
-            placeholder="Book Name"
-            value={book}
-            onChange={(e) => setBook(e.target.value)}
+            id="title"
+            name="title"
+            value={title}
+            placeholder="Title"
+            onChange={(e) => setTitle(e.target.value)}
           />
           <input
             type="text"
+            id="category"
+            name="category"
             placeholder="Category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -41,16 +48,11 @@ const AddBook = () => {
           <button type="submit">Add Book</button>
         </form>
       </div>
-
-      {/* Display Books */}
-      <div>
-        {booklist.map((item) => (
-          <div key={item.id}>
-            <h4>{item.book}</h4>
-            <button type="button" onClick={() => handleDelete(item.id)}>Delete</button>
-          </div>
-        ))}
-      </div>
+      <BookList
+        books={books}
+        // eslint-disable-next-line max-len
+        onRemove={(bookId) => setBooks((prevBooks) => prevBooks.filter((book) => book.id !== bookId))}
+      />
     </>
   );
 };

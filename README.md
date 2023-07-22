@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 <div align="center">
   <br/>
-  <h2><b>Math Magicians</b></h2>
+  <h2><b>Bookstore</b></h2>
 </div>
 
 # 📗 Table of Contents
@@ -25,9 +25,9 @@
   - [🙏 Acknowledgments ](#-acknowledgments-)
   - [📝 License ](#-license-)
 
-# Math Magicians WebApp<a name="about-project"></a>
+# Bookstore WebApp<a name="about-project"></a>
 
-**Math Magicians**
+**Bookstore**
 
 ## 🛠 Built With <a name="built-with"></a>
 

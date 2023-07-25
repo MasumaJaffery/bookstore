@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import { createSlice } from '@reduxjs/toolkit';
 
 const categorySlice = createSlice({

@@ -3,10 +3,11 @@
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { removeBook } from '../redux/books/booksSlice';
 
 function BookList() {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books.books);
+  const books = useSelector((state) => state.books);
 
   // Check if books is undefined or empty before rendering
   if (!books || books.length === 0) {
@@ -14,7 +15,7 @@ function BookList() {
   }
 
   const handleRemoveBook = (bookId) => {
-    dispatch({ type: 'REMOVE_BOOK', payload: bookId });
+    dispatch(removeBook(bookId)); // Dispatch the removeBook action with the bookId as payload
   };
 
   return (
@@ -29,7 +30,5 @@ function BookList() {
     </div>
   );
 }
-
-// No need to define propTypes and defaultProps here, as they are already provided above.
 
 export default BookList;

@@ -1,12 +1,21 @@
 /* eslint-disable linebreak-style */
-import React from 'react';
-import PropTypes from 'prop-types';
+// BookList.js
 
-function BookList({ books, onRemove }) {
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+function BookList() {
+  const dispatch = useDispatch();
+  const books = useSelector((state) => state.books.books);
+
   // Check if books is undefined or empty before rendering
   if (!books || books.length === 0) {
     return <h5>No books available.</h5>;
   }
+
+  const handleRemoveBook = (bookId) => {
+    dispatch({ type: 'REMOVE_BOOK', payload: bookId });
+  };
 
   return (
     <div>
@@ -14,27 +23,13 @@ function BookList({ books, onRemove }) {
         <div key={book.id}>
           <span>{book.title}</span>
           <span>{book.category}</span>
-          <button type="button" onClick={() => onRemove(book.id)}>Delete</button>
+          <button type="button" onClick={() => handleRemoveBook(book.id)}>Delete</button>
         </div>
       ))}
     </div>
   );
 }
 
-// Add prop type validation to Avoid Errors.
-BookList.propTypes = {
-  books: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
-    }),
-  ),
-  onRemove: PropTypes.func.isRequired,
-};
-
-BookList.defaultProps = {
-  books: [],
-};
+// No need to define propTypes and defaultProps here, as they are already provided above.
 
 export default BookList;

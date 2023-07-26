@@ -1,12 +1,14 @@
 /* eslint-disable linebreak-style */
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addBook } from '../redux/books/booksSlice';
 import BookList from './BookList';
-/* Book Already imported in Booklist so that's why i don't import it here! */
 
 function AddBook() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [books, setBooks] = useState([]);
+
+  const dispatch = useDispatch();
 
   const handleAddBook = (e) => {
     e.preventDefault();
@@ -19,7 +21,7 @@ function AddBook() {
       author,
     };
 
-    setBooks((prevBooks) => [...prevBooks, newBook]);
+    dispatch(addBook(newBook)); // Dispatch the action to add a book
     setTitle('');
     setAuthor('');
   };
@@ -47,11 +49,7 @@ function AddBook() {
           <button type="submit">Add Book</button>
         </form>
       </div>
-      <BookList
-        books={books}
-        // eslint-disable-next-line max-len
-        onRemove={(bookId) => setBooks((prevBooks) => prevBooks.filter((book) => book.id !== bookId))}
-      />
+      <BookList />
     </>
   );
 }

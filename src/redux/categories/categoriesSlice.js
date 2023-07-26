@@ -2,8 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const categorySlice = createSlice({
   name: 'categories',
-  intialState: { status: 'Under construction', categories: [] },
-  reducer: {
+  initialState: { status: 'Under construction', categories: [] },
+  reducers: {
+    addCategory: (state, action) => {
+      state.categories.push(action.payload);
+    },
   },
 });
 
